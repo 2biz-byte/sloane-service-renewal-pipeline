@@ -10,52 +10,193 @@
   "pipeline": {
     "name": "service-renewal-workflow",
     "description": "Household service renewal workflow: intake -> contract_read -> usage_summarized -> draft_ready.",
+    "runConcurrency": "multi",
     "columns": [
-      { "id": "case_id", "key": "case_id", "label": "Case ID", "type": "text", "order": 0 },
-      { "id": "service_name", "key": "service_name", "label": "Service Name", "type": "text", "order": 1 },
-      { "id": "provider", "key": "provider", "label": "Provider", "type": "text", "order": 2 },
-      { "id": "plan", "key": "plan", "label": "Plan", "type": "text", "order": 3 },
-      { "id": "current_monthly_usd", "key": "current_monthly_usd", "label": "Current Monthly USD", "type": "number", "order": 4 },
-      { "id": "proposed_monthly_usd", "key": "proposed_monthly_usd", "label": "Proposed Monthly USD", "type": "number", "order": 5 },
-      { "id": "hike_pct", "key": "hike_pct", "label": "Hike %", "type": "number", "order": 6 },
-      { "id": "contract_end", "key": "contract_end", "label": "Contract End", "type": "date", "order": 7 },
-      { "id": "promo_note", "key": "promo_note", "label": "Promo Note", "type": "text", "order": 8 },
-      { "id": "competitor_offer_usd", "key": "competitor_offer_usd", "label": "Competitor Offer USD", "type": "number", "order": 9 },
-      { "id": "status", "key": "status", "label": "Status", "type": "text", "order": 10 },
-      { "id": "usage_history", "key": "usage_history", "label": "Usage History", "type": "text", "order": 11 }
+      {
+        "id": "case_id",
+        "key": "case_id",
+        "label": "Case ID",
+        "type": "text",
+        "required": false,
+        "options": null,
+        "order": 0
+      },
+      {
+        "id": "service_name",
+        "key": "service_name",
+        "label": "Service Name",
+        "type": "text",
+        "required": false,
+        "options": null,
+        "order": 1
+      },
+      {
+        "id": "provider",
+        "key": "provider",
+        "label": "Provider",
+        "type": "text",
+        "required": false,
+        "options": null,
+        "order": 2
+      },
+      {
+        "id": "plan",
+        "key": "plan",
+        "label": "Plan",
+        "type": "text",
+        "required": false,
+        "options": null,
+        "order": 3
+      },
+      {
+        "id": "current_monthly_usd",
+        "key": "current_monthly_usd",
+        "label": "Current Monthly USD",
+        "type": "number",
+        "required": false,
+        "options": null,
+        "order": 4
+      },
+      {
+        "id": "proposed_monthly_usd",
+        "key": "proposed_monthly_usd",
+        "label": "Proposed Monthly USD",
+        "type": "number",
+        "required": false,
+        "options": null,
+        "order": 5
+      },
+      {
+        "id": "hike_pct",
+        "key": "hike_pct",
+        "label": "Hike %",
+        "type": "number",
+        "required": false,
+        "options": null,
+        "order": 6
+      },
+      {
+        "id": "contract_end",
+        "key": "contract_end",
+        "label": "Contract End",
+        "type": "date",
+        "required": false,
+        "options": null,
+        "order": 7
+      },
+      {
+        "id": "promo_note",
+        "key": "promo_note",
+        "label": "Promo Note",
+        "type": "text",
+        "required": false,
+        "options": null,
+        "order": 8
+      },
+      {
+        "id": "competitor_offer_usd",
+        "key": "competitor_offer_usd",
+        "label": "Competitor Offer USD",
+        "type": "number",
+        "required": false,
+        "options": null,
+        "order": 9
+      },
+      {
+        "id": "status",
+        "key": "status",
+        "label": "Status",
+        "type": "text",
+        "required": false,
+        "options": null,
+        "order": 10
+      },
+      {
+        "id": "usage_history",
+        "key": "usage_history",
+        "label": "Usage History",
+        "type": "text",
+        "required": false,
+        "options": null,
+        "order": 11
+      }
     ],
     "stages": [
       {
         "id": "intake",
         "name": "Intake",
         "type": "initial",
-        "description": "Renewal case enters the workflow.",
         "triggerKind": "manual",
-        "order": 0
+        "description": "Renewal case enters the workflow.",
+        "workflowEndpointId": null,
+        "reactiveConfig": null,
+        "scheduledConfig": null,
+        "dataChangeConfig": null,
+        "colorToken": null,
+        "icon": null,
+        "order": 0,
+        "transition": null,
+        "outputMapping": null,
+        "outputMode": null,
+        "outputArrayKey": null,
+        "upsertKey": null
       },
       {
         "id": "contract_read",
         "name": "Contract Read",
         "type": "intermediate",
-        "description": "Renewal notice and contract terms read (Gmail).",
         "triggerKind": "manual",
-        "order": 1
+        "description": "Renewal notice and contract terms read (Gmail).",
+        "workflowEndpointId": null,
+        "reactiveConfig": null,
+        "scheduledConfig": null,
+        "dataChangeConfig": null,
+        "colorToken": null,
+        "icon": null,
+        "order": 1,
+        "transition": null,
+        "outputMapping": null,
+        "outputMode": null,
+        "outputArrayKey": null,
+        "upsertKey": null
       },
       {
         "id": "usage_summarized",
         "name": "Usage Summarized",
         "type": "intermediate",
-        "description": "Monthly spend and usage summarized (Sheets).",
         "triggerKind": "manual",
-        "order": 2
+        "description": "Monthly spend and usage summarized (Sheets).",
+        "workflowEndpointId": null,
+        "reactiveConfig": null,
+        "scheduledConfig": null,
+        "dataChangeConfig": null,
+        "colorToken": null,
+        "icon": null,
+        "order": 2,
+        "transition": null,
+        "outputMapping": null,
+        "outputMode": null,
+        "outputArrayKey": null,
+        "upsertKey": null
       },
       {
         "id": "draft_ready",
         "name": "Draft Ready",
         "type": "terminal",
-        "description": "Negotiation email draft ready (Gmail draft, never sent).",
         "triggerKind": "manual",
-        "order": 3
+        "description": "Negotiation email draft ready (Gmail draft, never sent).",
+        "workflowEndpointId": null,
+        "reactiveConfig": null,
+        "scheduledConfig": null,
+        "dataChangeConfig": null,
+        "colorToken": null,
+        "icon": null,
+        "order": 3,
+        "transition": null,
+        "outputMapping": null,
+        "outputMode": null,
+        "outputArrayKey": null,
+        "upsertKey": null
       }
     ],
     "transitions": [
@@ -64,47 +205,150 @@
         "name": "Contract reviewed",
         "fromStageId": "intake",
         "toStageId": "contract_read",
+        "workflowEndpointId": null,
+        "acquisition": null,
+        "postProcessors": null,
+        "inputBindings": null,
         "trigger": "manual",
-        "fieldMappings": [],
+        "automation": null,
+        "approvalGuard": null,
         "success": {
           "advanceToStageId": "contract_read",
-          "persistMode": "shared_patch",
+          "guardText": null,
+          "guardAst": null,
           "fieldMappings": [
-            { "targetField": "status", "sourcePath": "status" }
-          ]
-        }
+            {
+              "targetField": "status",
+              "sourcePath": "status",
+              "required": false
+            }
+          ],
+          "persistMode": "shared_patch",
+          "arrayKey": null,
+          "correlation": null,
+          "effects": null,
+          "persistListName": null
+        },
+        "failure": null,
+        "failureRoutes": null,
+        "failureStageId": null,
+        "guard": null,
+        "fieldMappings": [
+          {
+            "targetField": "status",
+            "sourcePath": "status",
+            "required": false
+          }
+        ],
+        "outputMode": "single",
+        "outputArrayKey": null,
+        "selectionMode": null,
+        "batchMode": null,
+        "manualLabel": null,
+        "legacyRouteKey": null,
+        "upsertKey": null
       },
       {
         "id": "to_usage_summarized",
         "name": "Usage summarized",
         "fromStageId": "contract_read",
         "toStageId": "usage_summarized",
+        "workflowEndpointId": null,
+        "acquisition": null,
+        "postProcessors": null,
+        "inputBindings": null,
         "trigger": "manual",
-        "fieldMappings": [],
+        "automation": null,
+        "approvalGuard": null,
         "success": {
           "advanceToStageId": "usage_summarized",
-          "persistMode": "shared_patch",
+          "guardText": null,
+          "guardAst": null,
           "fieldMappings": [
-            { "targetField": "status", "sourcePath": "status" }
-          ]
-        }
+            {
+              "targetField": "status",
+              "sourcePath": "status",
+              "required": false
+            }
+          ],
+          "persistMode": "shared_patch",
+          "arrayKey": null,
+          "correlation": null,
+          "effects": null,
+          "persistListName": null
+        },
+        "failure": null,
+        "failureRoutes": null,
+        "failureStageId": null,
+        "guard": null,
+        "fieldMappings": [
+          {
+            "targetField": "status",
+            "sourcePath": "status",
+            "required": false
+          }
+        ],
+        "outputMode": "single",
+        "outputArrayKey": null,
+        "selectionMode": null,
+        "batchMode": null,
+        "manualLabel": null,
+        "legacyRouteKey": null,
+        "upsertKey": null
       },
       {
         "id": "to_draft_ready",
         "name": "Draft ready",
         "fromStageId": "usage_summarized",
         "toStageId": "draft_ready",
+        "workflowEndpointId": null,
+        "acquisition": null,
+        "postProcessors": null,
+        "inputBindings": null,
         "trigger": "manual",
-        "fieldMappings": [],
+        "automation": null,
+        "approvalGuard": null,
         "success": {
           "advanceToStageId": "draft_ready",
-          "persistMode": "shared_patch",
+          "guardText": null,
+          "guardAst": null,
           "fieldMappings": [
-            { "targetField": "status", "sourcePath": "status" }
-          ]
-        }
+            {
+              "targetField": "status",
+              "sourcePath": "status",
+              "required": false
+            }
+          ],
+          "persistMode": "shared_patch",
+          "arrayKey": null,
+          "correlation": null,
+          "effects": null,
+          "persistListName": null
+        },
+        "failure": null,
+        "failureRoutes": null,
+        "failureStageId": null,
+        "guard": null,
+        "fieldMappings": [
+          {
+            "targetField": "status",
+            "sourcePath": "status",
+            "required": false
+          }
+        ],
+        "outputMode": "single",
+        "outputArrayKey": null,
+        "selectionMode": null,
+        "batchMode": null,
+        "manualLabel": null,
+        "legacyRouteKey": null,
+        "upsertKey": null
       }
-    ]
+    ],
+    "acquisitionRecipes": [],
+    "existingCasePolicies": [],
+    "child": null,
+    "childPipelines": null
   },
-  "commitMessage": "Convert service-renewal pipeline to schema v2 portable"
+  "commitMessage": "Sync pipeline machine definition to git"
 }
