@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "target": "pipeline_definition",
+  "pipeline": {
+    "id": "pl_e13390d8fa6d",
+    "name": "service-renewal-workflow",
+    "description": null,
+    "pageId": "9beee179-c29d-4d19-9899-8964f57827a1",
+    "collectionId": "coll_e025df0ff543",
+    "runConcurrency": "multi"
+  },
+  "definitionFile": "assets/pipeline.json",
+  "tasksDir": "tasks",
+  "stages": [
+    {
+      "id": "intake",
+      "name": "Intake"
+    },
+    {
+      "id": "contract_read",
+      "name": "Contract Read"
+    },
+    {
+      "id": "usage_summarized",
+      "name": "Usage Summarized"
+    },
+    {
+      "id": "draft_ready",
+      "name": "Draft Ready"
+    }
+  ],
+  "columns": [],
+  "transitionIds": [
+    "to_contract_read",
+    "to_usage_summarized",
+    "to_draft_ready"
+  ]
+}

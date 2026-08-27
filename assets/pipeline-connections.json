@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 2,
+  "commandId": "pl_e13390d8fa6d",
+  "trigger": "pl_e13390d8fa6d",
+  "label": "service-renewal-workflow",
+  "updatedAt": 1787828576011,
+  "nodes": [
+    {
+      "id": "pipeline:pl_e13390d8fa6d",
+      "kind": "execution",
+      "label": "service-renewal-workflow",
+      "description": "Pipeline state machine",
+      "meta": {
+        "executionType": "pipeline",
+        "pipelineId": "pl_e13390d8fa6d",
+        "collectionId": "coll_e025df0ff543"
+      }
+    },
+    {
+      "id": "pipeline-stage:pl_e13390d8fa6d:intake",
+      "kind": "pipeline_stage",
+      "label": "Intake",
+      "description": "service-renewal-workflow",
+      "meta": {
+        "pipelineId": "pl_e13390d8fa6d",
+        "stageId": "intake"
+      }
+    },
+    {
+      "id": "pipeline-stage:pl_e13390d8fa6d:contract_read",
+      "kind": "pipeline_stage",
+      "label": "Contract Read",
+      "description": "service-renewal-workflow",
+      "meta": {
+        "pipelineId": "pl_e13390d8fa6d",
+        "stageId": "contract_read"
+      }
+    },
+    {
+      "id": "pipeline-stage:pl_e13390d8fa6d:usage_summarized",
+      "kind": "pipeline_stage",
+      "label": "Usage Summarized",
+      "description": "service-renewal-workflow",
+      "meta": {
+        "pipelineId": "pl_e13390d8fa6d",
+        "stageId": "usage_summarized"
+      }
+    },
+    {
+      "id": "pipeline-stage:pl_e13390d8fa6d:draft_ready",
+      "kind": "pipeline_stage",
+      "label": "Draft Ready",
+      "description": "service-renewal-workflow",
+      "meta": {
+        "pipelineId": "pl_e13390d8fa6d",
+        "stageId": "draft_ready"
+      }
+    },
+    {
+      "id": "collection:coll_e025df0ff543",
+      "kind": "collection",
+      "label": "coll_e025df0ff543",
+      "description": "service-renewal-workflow collection",
+      "meta": {
+        "collectionId": "coll_e025df0ff543",
+        "pipelineId": "pl_e13390d8fa6d"
+      }
+    },
+    {
+      "id": "pipeline-transition:pl_e13390d8fa6d:to_contract_read",
+      "kind": "pipeline_transition",
+      "label": "Contract reviewed",
+      "description": "Pipeline transition",
+      "meta": {
+        "pipelineId": "pl_e13390d8fa6d",
+        "transitionId": "to_contract_read",
+        "trigger": "manual"
+      }
+    },
+    {
+      "id": "pipeline-transition:pl_e13390d8fa6d:to_usage_summarized",
+      "kind": "pipeline_transition",
+      "label": "Usage summarized",
+      "description": "Pipeline transition",
+      "meta": {
+        "pipelineId": "pl_e13390d8fa6d",
+        "transitionId": "to_usage_summarized",
+        "trigger": "manual"
+      }
+    },
+    {
+      "id": "pipeline-transition:pl_e13390d8fa6d:to_draft_ready",
+      "kind": "pipeline_transition",
+      "label": "Draft ready",
+      "description": "Pipeline transition",
+      "meta": {
+        "pipelineId": "pl_e13390d8fa6d",
+        "transitionId": "to_draft_ready",
+        "trigger": "manual"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:pipeline:pl_e13390d8fa6d:route:pipeline-stage:pl_e13390d8fa6d:intake:1",
+      "source": "pipeline:pl_e13390d8fa6d",
+      "target": "pipeline-stage:pl_e13390d8fa6d:intake",
+      "relation": "route",
+      "label": "start"
+    },
+    {
+      "id": "edge:pipeline:pl_e13390d8fa6d:writes:collection:coll_e025df0ff543:2",
+      "source": "pipeline:pl_e13390d8fa6d",
+      "target": "collection:coll_e025df0ff543",
+      "relation": "writes"
+    },
+    {
+      "id": "edge:pipeline-stage:pl_e13390d8fa6d:intake:triggers:pipeline-transition:pl_e13390d8fa6d:to_contract_read:3",
+      "source": "pipeline-stage:pl_e13390d8fa6d:intake",
+      "target": "pipeline-transition:pl_e13390d8fa6d:to_contract_read",
+      "relation": "triggers"
+    },
+    {
+      "id": "edge:pipeline-transition:pl_e13390d8fa6d:to_contract_read:success:pipeline-stage:pl_e13390d8fa6d:contract_read:4",
+      "source": "pipeline-transition:pl_e13390d8fa6d:to_contract_read",
+      "target": "pipeline-stage:pl_e13390d8fa6d:contract_read",
+      "relation": "success"
+    },
+    {
+      "id": "edge:pipeline-transition:pl_e13390d8fa6d:to_contract_read:failure:pipeline-stage:pl_e13390d8fa6d:intake:5",
+      "source": "pipeline-transition:pl_e13390d8fa6d:to_contract_read",
+      "target": "pipeline-stage:pl_e13390d8fa6d:intake",
+      "relation": "failure"
+    },
+    {
+      "id": "edge:pipeline-stage:pl_e13390d8fa6d:contract_read:triggers:pipeline-transition:pl_e13390d8fa6d:to_usage_summarized:6",
+      "source": "pipeline-stage:pl_e13390d8fa6d:contract_read",
+      "target": "pipeline-transition:pl_e13390d8fa6d:to_usage_summarized",
+      "relation": "triggers"
+    },
+    {
+      "id": "edge:pipeline-transition:pl_e13390d8fa6d:to_usage_summarized:success:pipeline-stage:pl_e13390d8fa6d:usage_summarized:7",
+      "source": "pipeline-transition:pl_e13390d8fa6d:to_usage_summarized",
+      "target": "pipeline-stage:pl_e13390d8fa6d:usage_summarized",
+      "relation": "success"
+    },
+    {
+      "id": "edge:pipeline-transition:pl_e13390d8fa6d:to_usage_summarized:failure:pipeline-stage:pl_e13390d8fa6d:contract_read:8",
+      "source": "pipeline-transition:pl_e13390d8fa6d:to_usage_summarized",
+      "target": "pipeline-stage:pl_e13390d8fa6d:contract_read",
+      "relation": "failure"
+    },
+    {
+      "id": "edge:pipeline-stage:pl_e13390d8fa6d:usage_summarized:triggers:pipeline-transition:pl_e13390d8fa6d:to_draft_ready:9",
+      "source": "pipeline-stage:pl_e13390d8fa6d:usage_summarized",
+      "target": "pipeline-transition:pl_e13390d8fa6d:to_draft_ready",
+      "relation": "triggers"
+    },
+    {
+      "id": "edge:pipeline-transition:pl_e13390d8fa6d:to_draft_ready:success:pipeline-stage:pl_e13390d8fa6d:draft_ready:10",
+      "source": "pipeline-transition:pl_e13390d8fa6d:to_draft_ready",
+      "target": "pipeline-stage:pl_e13390d8fa6d:draft_ready",
+      "relation": "success"
+    },
+    {
+      "id": "edge:pipeline-transition:pl_e13390d8fa6d:to_draft_ready:failure:pipeline-stage:pl_e13390d8fa6d:usage_summarized:11",
+      "source": "pipeline-transition:pl_e13390d8fa6d:to_draft_ready",
+      "target": "pipeline-stage:pl_e13390d8fa6d:usage_summarized",
+      "relation": "failure"
+    }
+  ],
+  "relatedTodoIds": []
+}
