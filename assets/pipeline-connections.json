@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "resourceKey": "pipeline.sloane.service-renewal-workflow",
-  "trigger": "pipeline.sloane.service-renewal-workflow",
+  "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow",
+  "trigger": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow",
   "label": "service-renewal-workflow",
   "updatedAt": 1787835466532,
   "nodes": [
     {
-      "id": "pipeline:pipeline.sloane.service-renewal-workflow",
+      "id": "pipeline:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow",
       "kind": "execution",
       "label": "service-renewal-workflow",
       "description": "Household service renewal workflow: intake -> contract_read -> usage_summarized -> draft_ready.",
@@ -14,151 +14,151 @@
         "executionType": "pipeline",
         "pipelineRef": {
           "kind": "pipeline",
-          "resourceKey": "pipeline.sloane.service-renewal-workflow"
+          "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
         },
         "listRef": {
           "kind": "list",
-          "resourceKey": "list.sloane.service-renewals"
+          "resourceKey": "list.sloane-household-procurement-ai-persona.service-renewals"
         }
       }
     },
     {
-      "id": "pipeline-stage:pipeline.sloane.service-renewal-workflow:intake",
+      "id": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:intake",
       "kind": "pipeline_stage",
       "label": "Intake",
       "description": "Renewal case enters the workflow.",
       "meta": {
         "pipelineRef": {
           "kind": "pipeline",
-          "resourceKey": "pipeline.sloane.service-renewal-workflow"
+          "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
         },
         "stageId": "intake",
         "stageType": "initial"
       }
     },
     {
-      "id": "pipeline-stage:pipeline.sloane.service-renewal-workflow:contract_read",
+      "id": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:contract_read",
       "kind": "pipeline_stage",
       "label": "Contract Read",
       "description": "Renewal notice and contract terms read (Gmail).",
       "meta": {
         "pipelineRef": {
           "kind": "pipeline",
-          "resourceKey": "pipeline.sloane.service-renewal-workflow"
+          "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
         },
         "stageId": "contract_read",
         "stageType": "intermediate"
       }
     },
     {
-      "id": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
+      "id": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized",
       "kind": "pipeline_stage",
       "label": "Usage Summarized",
       "description": "Monthly spend and usage summarized (Sheets).",
       "meta": {
         "pipelineRef": {
           "kind": "pipeline",
-          "resourceKey": "pipeline.sloane.service-renewal-workflow"
+          "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
         },
         "stageId": "usage_summarized",
         "stageType": "intermediate"
       }
     },
     {
-      "id": "pipeline-stage:pipeline.sloane.service-renewal-workflow:draft_ready",
+      "id": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:draft_ready",
       "kind": "pipeline_stage",
       "label": "Draft Ready",
       "description": "Negotiation email draft ready (Gmail draft, never sent).",
       "meta": {
         "pipelineRef": {
           "kind": "pipeline",
-          "resourceKey": "pipeline.sloane.service-renewal-workflow"
+          "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
         },
         "stageId": "draft_ready",
         "stageType": "terminal"
       }
     },
     {
-      "id": "list:list.sloane.service-renewals",
+      "id": "list:list.sloane-household-procurement-ai-persona.service-renewals",
       "kind": "collection",
-      "label": "list.sloane.service-renewals",
+      "label": "list.sloane-household-procurement-ai-persona.service-renewals",
       "description": "service-renewal-workflow collection",
       "meta": {
         "listRef": {
           "kind": "list",
-          "resourceKey": "list.sloane.service-renewals"
+          "resourceKey": "list.sloane-household-procurement-ai-persona.service-renewals"
         },
         "pipelineRef": {
           "kind": "pipeline",
-          "resourceKey": "pipeline.sloane.service-renewal-workflow"
+          "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
         }
       }
     },
     {
-      "id": "pipeline-transition:pipeline.sloane.service-renewal-workflow:to_contract_read",
+      "id": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:to_contract_read",
       "kind": "pipeline_transition",
       "label": "Contract reviewed",
       "description": "Pipeline transition",
       "meta": {
         "pipelineRef": {
           "kind": "pipeline",
-          "resourceKey": "pipeline.sloane.service-renewal-workflow"
+          "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
         },
         "transitionId": "to_contract_read",
         "trigger": "manual"
       }
     },
     {
-      "id": "pipeline-transition:pipeline.sloane.service-renewal-workflow:to_usage_summarized",
+      "id": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:to_usage_summarized",
       "kind": "pipeline_transition",
       "label": "Usage summarized",
       "description": "Pipeline transition",
       "meta": {
         "pipelineRef": {
           "kind": "pipeline",
-          "resourceKey": "pipeline.sloane.service-renewal-workflow"
+          "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
         },
         "transitionId": "to_usage_summarized",
         "trigger": "manual"
       }
     },
     {
-      "id": "pipeline-transition:pipeline.sloane.service-renewal-workflow:draft_email",
+      "id": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:draft_email",
       "kind": "pipeline_transition",
       "label": "Draft negotiation email",
       "description": "Pipeline transition",
       "meta": {
         "pipelineRef": {
           "kind": "pipeline",
-          "resourceKey": "pipeline.sloane.service-renewal-workflow"
+          "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
         },
         "transitionId": "draft_email",
         "trigger": "manual"
       }
     },
     {
-      "id": "pipeline-transition:pipeline.sloane.service-renewal-workflow:revise_draft",
+      "id": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:revise_draft",
       "kind": "pipeline_transition",
       "label": "Revise negotiation draft",
       "description": "Pipeline transition",
       "meta": {
         "pipelineRef": {
           "kind": "pipeline",
-          "resourceKey": "pipeline.sloane.service-renewal-workflow"
+          "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
         },
         "transitionId": "revise_draft",
         "trigger": "manual"
       }
     },
     {
-      "id": "pipeline-transition:pipeline.sloane.service-renewal-workflow:mark_draft_ready",
+      "id": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:mark_draft_ready",
       "kind": "pipeline_transition",
       "label": "Mark draft ready",
       "description": "Pipeline transition",
       "meta": {
         "pipelineRef": {
           "kind": "pipeline",
-          "resourceKey": "pipeline.sloane.service-renewal-workflow"
+          "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
         },
         "transitionId": "mark_draft_ready",
         "trigger": "manual"
@@ -167,106 +167,106 @@
   ],
   "edges": [
     {
-      "id": "edge:pipeline:pipeline.sloane.service-renewal-workflow:route:pipeline-stage:pipeline.sloane.service-renewal-workflow:intake:1",
-      "source": "pipeline:pipeline.sloane.service-renewal-workflow",
-      "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:intake",
+      "id": "edge:pipeline:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:route:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:intake:1",
+      "source": "pipeline:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow",
+      "target": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:intake",
       "relation": "route",
       "label": "start"
     },
     {
-      "id": "edge:pipeline:pipeline.sloane.service-renewal-workflow:writes:list:list.sloane.service-renewals:2",
-      "source": "pipeline:pipeline.sloane.service-renewal-workflow",
-      "target": "list:list.sloane.service-renewals",
+      "id": "edge:pipeline:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:writes:list:list.sloane-household-procurement-ai-persona.service-renewals:2",
+      "source": "pipeline:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow",
+      "target": "list:list.sloane-household-procurement-ai-persona.service-renewals",
       "relation": "writes"
     },
     {
-      "id": "edge:pipeline-stage:pipeline.sloane.service-renewal-workflow:intake:triggers:pipeline-transition:pipeline.sloane.service-renewal-workflow:to_contract_read:3",
-      "source": "pipeline-stage:pipeline.sloane.service-renewal-workflow:intake",
-      "target": "pipeline-transition:pipeline.sloane.service-renewal-workflow:to_contract_read",
+      "id": "edge:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:intake:triggers:pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:to_contract_read:3",
+      "source": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:intake",
+      "target": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:to_contract_read",
       "relation": "triggers"
     },
     {
-      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:to_contract_read:success:pipeline-stage:pipeline.sloane.service-renewal-workflow:contract_read:4",
-      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:to_contract_read",
-      "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:contract_read",
+      "id": "edge:pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:to_contract_read:success:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:contract_read:4",
+      "source": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:to_contract_read",
+      "target": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:contract_read",
       "relation": "success"
     },
     {
-      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:to_contract_read:failure:pipeline-stage:pipeline.sloane.service-renewal-workflow:intake:5",
-      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:to_contract_read",
-      "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:intake",
+      "id": "edge:pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:to_contract_read:failure:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:intake:5",
+      "source": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:to_contract_read",
+      "target": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:intake",
       "relation": "failure"
     },
     {
-      "id": "edge:pipeline-stage:pipeline.sloane.service-renewal-workflow:contract_read:triggers:pipeline-transition:pipeline.sloane.service-renewal-workflow:to_usage_summarized:6",
-      "source": "pipeline-stage:pipeline.sloane.service-renewal-workflow:contract_read",
-      "target": "pipeline-transition:pipeline.sloane.service-renewal-workflow:to_usage_summarized",
+      "id": "edge:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:contract_read:triggers:pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:to_usage_summarized:6",
+      "source": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:contract_read",
+      "target": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:to_usage_summarized",
       "relation": "triggers"
     },
     {
-      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:to_usage_summarized:success:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:7",
-      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:to_usage_summarized",
-      "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
+      "id": "edge:pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:to_usage_summarized:success:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized:7",
+      "source": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:to_usage_summarized",
+      "target": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized",
       "relation": "success"
     },
     {
-      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:to_usage_summarized:failure:pipeline-stage:pipeline.sloane.service-renewal-workflow:contract_read:8",
-      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:to_usage_summarized",
-      "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:contract_read",
+      "id": "edge:pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:to_usage_summarized:failure:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:contract_read:8",
+      "source": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:to_usage_summarized",
+      "target": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:contract_read",
       "relation": "failure"
     },
     {
-      "id": "edge:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:triggers:pipeline-transition:pipeline.sloane.service-renewal-workflow:draft_email:9",
-      "source": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
-      "target": "pipeline-transition:pipeline.sloane.service-renewal-workflow:draft_email",
+      "id": "edge:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized:triggers:pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:draft_email:9",
+      "source": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized",
+      "target": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:draft_email",
       "relation": "triggers"
     },
     {
-      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:draft_email:success:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:10",
-      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:draft_email",
-      "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
+      "id": "edge:pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:draft_email:success:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized:10",
+      "source": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:draft_email",
+      "target": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized",
       "relation": "success"
     },
     {
-      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:draft_email:failure:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:11",
-      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:draft_email",
-      "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
+      "id": "edge:pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:draft_email:failure:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized:11",
+      "source": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:draft_email",
+      "target": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized",
       "relation": "failure"
     },
     {
-      "id": "edge:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:triggers:pipeline-transition:pipeline.sloane.service-renewal-workflow:revise_draft:12",
-      "source": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
-      "target": "pipeline-transition:pipeline.sloane.service-renewal-workflow:revise_draft",
+      "id": "edge:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized:triggers:pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:revise_draft:12",
+      "source": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized",
+      "target": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:revise_draft",
       "relation": "triggers"
     },
     {
-      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:revise_draft:success:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:13",
-      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:revise_draft",
-      "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
+      "id": "edge:pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:revise_draft:success:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized:13",
+      "source": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:revise_draft",
+      "target": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized",
       "relation": "success"
     },
     {
-      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:revise_draft:failure:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:14",
-      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:revise_draft",
-      "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
+      "id": "edge:pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:revise_draft:failure:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized:14",
+      "source": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:revise_draft",
+      "target": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized",
       "relation": "failure"
     },
     {
-      "id": "edge:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:triggers:pipeline-transition:pipeline.sloane.service-renewal-workflow:mark_draft_ready:15",
-      "source": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
-      "target": "pipeline-transition:pipeline.sloane.service-renewal-workflow:mark_draft_ready",
+      "id": "edge:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized:triggers:pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:mark_draft_ready:15",
+      "source": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized",
+      "target": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:mark_draft_ready",
       "relation": "triggers"
     },
     {
-      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:mark_draft_ready:success:pipeline-stage:pipeline.sloane.service-renewal-workflow:draft_ready:16",
-      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:mark_draft_ready",
-      "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:draft_ready",
+      "id": "edge:pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:mark_draft_ready:success:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:draft_ready:16",
+      "source": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:mark_draft_ready",
+      "target": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:draft_ready",
       "relation": "success"
     },
     {
-      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:mark_draft_ready:failure:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:17",
-      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:mark_draft_ready",
-      "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
+      "id": "edge:pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:mark_draft_ready:failure:pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized:17",
+      "source": "pipeline-transition:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:mark_draft_ready",
+      "target": "pipeline-stage:pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow:usage_summarized",
       "relation": "failure"
     }
   ],
