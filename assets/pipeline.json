@@ -205,144 +205,333 @@
         "name": "Contract reviewed",
         "fromStageId": "intake",
         "toStageId": "contract_read",
-        "workflowEndpointId": null,
-        "acquisition": null,
-        "postProcessors": null,
-        "inputBindings": null,
         "trigger": "manual",
-        "automation": null,
-        "approvalGuard": null,
+        "automation": {
+          "autoFireOnEntry": false,
+          "autoAdvanceWhenWorkflowless": false
+        },
         "success": {
           "advanceToStageId": "contract_read",
-          "guardText": null,
-          "guardAst": null,
+          "persistMode": "shared_patch",
           "fieldMappings": [
+            {
+              "targetField": "case_id",
+              "sourcePath": "case_id",
+              "defaultValue": "SLOANE-RENEW-001"
+            },
+            {
+              "targetField": "service_name",
+              "sourcePath": "service_name",
+              "defaultValue": "Home internet"
+            },
+            {
+              "targetField": "provider",
+              "sourcePath": "provider",
+              "defaultValue": "Northline Fiber"
+            },
+            {
+              "targetField": "plan",
+              "sourcePath": "plan",
+              "defaultValue": "Home Gigabit"
+            },
+            {
+              "targetField": "current_monthly_usd",
+              "sourcePath": "current_monthly_usd",
+              "defaultValue": 59.99
+            },
+            {
+              "targetField": "proposed_monthly_usd",
+              "sourcePath": "proposed_monthly_usd",
+              "defaultValue": 89.99
+            },
+            {
+              "targetField": "hike_pct",
+              "sourcePath": "hike_pct",
+              "defaultValue": 50
+            },
+            {
+              "targetField": "contract_end",
+              "sourcePath": "contract_end",
+              "defaultValue": "2026-09-14"
+            },
+            {
+              "targetField": "promo_note",
+              "sourcePath": "promo_note",
+              "defaultValue": "First-year rate ending"
+            },
+            {
+              "targetField": "competitor_offer_usd",
+              "sourcePath": "competitor_offer_usd",
+              "defaultValue": 64.99
+            },
             {
               "targetField": "status",
               "sourcePath": "status",
-              "required": false
+              "defaultValue": "contract_read"
             }
-          ],
-          "persistMode": "shared_patch",
-          "arrayKey": null,
-          "correlation": null,
-          "effects": null,
-          "persistListName": null
+          ]
         },
-        "failure": null,
-        "failureRoutes": null,
-        "failureStageId": null,
-        "guard": null,
-        "fieldMappings": [
-          {
-            "targetField": "status",
-            "sourcePath": "status",
-            "required": false
-          }
-        ],
+        "failure": {
+          "advanceToStageId": "intake",
+          "persistMode": "shared_patch",
+          "fieldMappings": []
+        },
+        "failureStageId": "intake",
         "outputMode": "single",
-        "outputArrayKey": null,
-        "selectionMode": null,
-        "batchMode": null,
-        "manualLabel": null,
-        "legacyRouteKey": null,
-        "upsertKey": null
+        "selectionMode": "all_in_stage",
+        "batchMode": "none"
       },
       {
         "id": "to_usage_summarized",
         "name": "Usage summarized",
         "fromStageId": "contract_read",
         "toStageId": "usage_summarized",
-        "workflowEndpointId": null,
-        "acquisition": null,
-        "postProcessors": null,
-        "inputBindings": null,
         "trigger": "manual",
-        "automation": null,
-        "approvalGuard": null,
+        "automation": {
+          "autoFireOnEntry": false,
+          "autoAdvanceWhenWorkflowless": false
+        },
         "success": {
           "advanceToStageId": "usage_summarized",
-          "guardText": null,
-          "guardAst": null,
+          "persistMode": "shared_patch",
           "fieldMappings": [
+            {
+              "targetField": "usage_history",
+              "sourcePath": "usage_history",
+              "defaultValue": "2026-03,412,59.99;2026-04,438,59.99;2026-05,401,59.99;2026-06,455,59.99;2026-07,470,59.99;2026-08,448,59.99"
+            },
             {
               "targetField": "status",
               "sourcePath": "status",
-              "required": false
+              "defaultValue": "usage_summarized"
             }
-          ],
-          "persistMode": "shared_patch",
-          "arrayKey": null,
-          "correlation": null,
-          "effects": null,
-          "persistListName": null
+          ]
         },
-        "failure": null,
-        "failureRoutes": null,
-        "failureStageId": null,
-        "guard": null,
-        "fieldMappings": [
-          {
-            "targetField": "status",
-            "sourcePath": "status",
-            "required": false
-          }
-        ],
+        "failure": {
+          "advanceToStageId": "contract_read",
+          "persistMode": "shared_patch",
+          "fieldMappings": []
+        },
+        "failureStageId": "contract_read",
         "outputMode": "single",
-        "outputArrayKey": null,
-        "selectionMode": null,
-        "batchMode": null,
-        "manualLabel": null,
-        "legacyRouteKey": null,
-        "upsertKey": null
+        "selectionMode": "all_in_stage",
+        "batchMode": "none"
       },
       {
-        "id": "to_draft_ready",
-        "name": "Draft ready",
+        "id": "draft_email",
+        "name": "Draft negotiation email",
         "fromStageId": "usage_summarized",
-        "toStageId": "draft_ready",
-        "workflowEndpointId": null,
-        "acquisition": null,
-        "postProcessors": null,
-        "inputBindings": null,
+        "toStageId": "usage_summarized",
         "trigger": "manual",
-        "automation": null,
-        "approvalGuard": null,
+        "automation": {
+          "autoFireOnEntry": false,
+          "autoAdvanceWhenWorkflowless": false
+        },
         "success": {
-          "advanceToStageId": "draft_ready",
-          "guardText": null,
-          "guardAst": null,
+          "advanceToStageId": "usage_summarized",
+          "persistMode": "shared_patch",
           "fieldMappings": [
+            {
+              "targetField": "case_id",
+              "sourcePath": "case_id",
+              "defaultValue": "SLOANE-RENEW-001"
+            },
+            {
+              "targetField": "current_monthly_usd",
+              "sourcePath": "current_monthly_usd",
+              "defaultValue": 59.99
+            },
+            {
+              "targetField": "proposed_monthly_usd",
+              "sourcePath": "proposed_monthly_usd",
+              "defaultValue": 89.99
+            },
+            {
+              "targetField": "hike_pct",
+              "sourcePath": "hike_pct",
+              "defaultValue": 50
+            },
+            {
+              "targetField": "contract_end",
+              "sourcePath": "contract_end",
+              "defaultValue": "2026-09-14"
+            },
+            {
+              "targetField": "competitor_offer_usd",
+              "sourcePath": "competitor_offer_usd",
+              "defaultValue": 64.99
+            },
+            {
+              "targetField": "usage_history",
+              "sourcePath": "usage_history",
+              "defaultValue": "2026-03,412,59.99;2026-04,438,59.99;2026-05,401,59.99;2026-06,455,59.99;2026-07,470,59.99;2026-08,448,59.99"
+            },
             {
               "targetField": "status",
               "sourcePath": "status",
-              "required": false
+              "defaultValue": "usage_summarized"
             }
-          ],
-          "persistMode": "shared_patch",
-          "arrayKey": null,
-          "correlation": null,
-          "effects": null,
-          "persistListName": null
+          ]
         },
-        "failure": null,
-        "failureRoutes": null,
-        "failureStageId": null,
-        "guard": null,
-        "fieldMappings": [
-          {
-            "targetField": "status",
-            "sourcePath": "status",
-            "required": false
-          }
-        ],
+        "failure": {
+          "advanceToStageId": "usage_summarized",
+          "persistMode": "shared_patch",
+          "fieldMappings": []
+        },
         "outputMode": "single",
-        "outputArrayKey": null,
-        "selectionMode": null,
-        "batchMode": null,
-        "manualLabel": null,
-        "legacyRouteKey": null,
-        "upsertKey": null
+        "selectionMode": "all_in_stage",
+        "batchMode": "none"
+      },
+      {
+        "id": "revise_draft",
+        "name": "Revise negotiation draft",
+        "fromStageId": "usage_summarized",
+        "toStageId": "usage_summarized",
+        "trigger": "manual",
+        "automation": {
+          "autoFireOnEntry": false,
+          "autoAdvanceWhenWorkflowless": false
+        },
+        "success": {
+          "advanceToStageId": "usage_summarized",
+          "persistMode": "shared_patch",
+          "fieldMappings": [
+            {
+              "targetField": "case_id",
+              "sourcePath": "case_id",
+              "defaultValue": "SLOANE-RENEW-001"
+            },
+            {
+              "targetField": "current_monthly_usd",
+              "sourcePath": "current_monthly_usd",
+              "defaultValue": 59.99
+            },
+            {
+              "targetField": "proposed_monthly_usd",
+              "sourcePath": "proposed_monthly_usd",
+              "defaultValue": 89.99
+            },
+            {
+              "targetField": "hike_pct",
+              "sourcePath": "hike_pct",
+              "defaultValue": 50
+            },
+            {
+              "targetField": "contract_end",
+              "sourcePath": "contract_end",
+              "defaultValue": "2026-09-14"
+            },
+            {
+              "targetField": "competitor_offer_usd",
+              "sourcePath": "competitor_offer_usd",
+              "defaultValue": 64.99
+            },
+            {
+              "targetField": "usage_history",
+              "sourcePath": "usage_history",
+              "defaultValue": "2026-03,412,59.99;2026-04,438,59.99;2026-05,401,59.99;2026-06,455,59.99;2026-07,470,59.99;2026-08,448,59.99"
+            },
+            {
+              "targetField": "status",
+              "sourcePath": "status",
+              "defaultValue": "usage_summarized"
+            }
+          ]
+        },
+        "failure": {
+          "advanceToStageId": "usage_summarized",
+          "persistMode": "shared_patch",
+          "fieldMappings": []
+        },
+        "outputMode": "single",
+        "selectionMode": "all_in_stage",
+        "batchMode": "none"
+      },
+      {
+        "id": "mark_draft_ready",
+        "name": "Mark draft ready",
+        "fromStageId": "usage_summarized",
+        "toStageId": "draft_ready",
+        "trigger": "manual",
+        "automation": {
+          "autoFireOnEntry": false,
+          "autoAdvanceWhenWorkflowless": false
+        },
+        "success": {
+          "advanceToStageId": "draft_ready",
+          "persistMode": "shared_patch",
+          "fieldMappings": [
+            {
+              "targetField": "case_id",
+              "sourcePath": "case_id",
+              "defaultValue": "SLOANE-RENEW-001"
+            },
+            {
+              "targetField": "service_name",
+              "sourcePath": "service_name",
+              "defaultValue": "Home internet"
+            },
+            {
+              "targetField": "provider",
+              "sourcePath": "provider",
+              "defaultValue": "Northline Fiber"
+            },
+            {
+              "targetField": "plan",
+              "sourcePath": "plan",
+              "defaultValue": "Home Gigabit"
+            },
+            {
+              "targetField": "current_monthly_usd",
+              "sourcePath": "current_monthly_usd",
+              "defaultValue": 59.99
+            },
+            {
+              "targetField": "proposed_monthly_usd",
+              "sourcePath": "proposed_monthly_usd",
+              "defaultValue": 89.99
+            },
+            {
+              "targetField": "hike_pct",
+              "sourcePath": "hike_pct",
+              "defaultValue": 50
+            },
+            {
+              "targetField": "contract_end",
+              "sourcePath": "contract_end",
+              "defaultValue": "2026-09-14"
+            },
+            {
+              "targetField": "promo_note",
+              "sourcePath": "promo_note",
+              "defaultValue": "First-year rate ending"
+            },
+            {
+              "targetField": "competitor_offer_usd",
+              "sourcePath": "competitor_offer_usd",
+              "defaultValue": 64.99
+            },
+            {
+              "targetField": "usage_history",
+              "sourcePath": "usage_history",
+              "defaultValue": "2026-03,412,59.99;2026-04,438,59.99;2026-05,401,59.99;2026-06,455,59.99;2026-07,470,59.99;2026-08,448,59.99"
+            },
+            {
+              "targetField": "status",
+              "sourcePath": "status",
+              "defaultValue": "draft_ready"
+            }
+          ]
+        },
+        "failure": {
+          "advanceToStageId": "usage_summarized",
+          "persistMode": "shared_patch",
+          "fieldMappings": []
+        },
+        "failureStageId": "usage_summarized",
+        "outputMode": "single",
+        "selectionMode": "all_in_stage",
+        "batchMode": "none"
       }
     ],
     "acquisitionRecipes": [],
@@ -350,5 +539,5 @@
     "child": null,
     "childPipelines": null
   },
-  "commitMessage": "Sync pipeline machine definition to git"
+  "commitMessage": "Add draft_email, revise_draft, mark_draft_ready transitions with SLOANE-RENEW-001 mock defaultValue fieldMappings"
 }

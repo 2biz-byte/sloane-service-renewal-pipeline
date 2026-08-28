@@ -123,16 +123,44 @@
       }
     },
     {
-      "id": "pipeline-transition:pipeline.sloane.service-renewal-workflow:to_draft_ready",
+      "id": "pipeline-transition:pipeline.sloane.service-renewal-workflow:draft_email",
       "kind": "pipeline_transition",
-      "label": "Draft ready",
+      "label": "Draft negotiation email",
       "description": "Pipeline transition",
       "meta": {
         "pipelineRef": {
           "kind": "pipeline",
           "resourceKey": "pipeline.sloane.service-renewal-workflow"
         },
-        "transitionId": "to_draft_ready",
+        "transitionId": "draft_email",
+        "trigger": "manual"
+      }
+    },
+    {
+      "id": "pipeline-transition:pipeline.sloane.service-renewal-workflow:revise_draft",
+      "kind": "pipeline_transition",
+      "label": "Revise negotiation draft",
+      "description": "Pipeline transition",
+      "meta": {
+        "pipelineRef": {
+          "kind": "pipeline",
+          "resourceKey": "pipeline.sloane.service-renewal-workflow"
+        },
+        "transitionId": "revise_draft",
+        "trigger": "manual"
+      }
+    },
+    {
+      "id": "pipeline-transition:pipeline.sloane.service-renewal-workflow:mark_draft_ready",
+      "kind": "pipeline_transition",
+      "label": "Mark draft ready",
+      "description": "Pipeline transition",
+      "meta": {
+        "pipelineRef": {
+          "kind": "pipeline",
+          "resourceKey": "pipeline.sloane.service-renewal-workflow"
+        },
+        "transitionId": "mark_draft_ready",
         "trigger": "manual"
       }
     }
@@ -188,20 +216,56 @@
       "relation": "failure"
     },
     {
-      "id": "edge:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:triggers:pipeline-transition:pipeline.sloane.service-renewal-workflow:to_draft_ready:9",
+      "id": "edge:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:triggers:pipeline-transition:pipeline.sloane.service-renewal-workflow:draft_email:9",
       "source": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
-      "target": "pipeline-transition:pipeline.sloane.service-renewal-workflow:to_draft_ready",
+      "target": "pipeline-transition:pipeline.sloane.service-renewal-workflow:draft_email",
       "relation": "triggers"
     },
     {
-      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:to_draft_ready:success:pipeline-stage:pipeline.sloane.service-renewal-workflow:draft_ready:10",
-      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:to_draft_ready",
+      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:draft_email:success:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:10",
+      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:draft_email",
+      "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
+      "relation": "success"
+    },
+    {
+      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:draft_email:failure:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:11",
+      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:draft_email",
+      "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
+      "relation": "failure"
+    },
+    {
+      "id": "edge:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:triggers:pipeline-transition:pipeline.sloane.service-renewal-workflow:revise_draft:12",
+      "source": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
+      "target": "pipeline-transition:pipeline.sloane.service-renewal-workflow:revise_draft",
+      "relation": "triggers"
+    },
+    {
+      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:revise_draft:success:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:13",
+      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:revise_draft",
+      "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
+      "relation": "success"
+    },
+    {
+      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:revise_draft:failure:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:14",
+      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:revise_draft",
+      "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
+      "relation": "failure"
+    },
+    {
+      "id": "edge:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:triggers:pipeline-transition:pipeline.sloane.service-renewal-workflow:mark_draft_ready:15",
+      "source": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
+      "target": "pipeline-transition:pipeline.sloane.service-renewal-workflow:mark_draft_ready",
+      "relation": "triggers"
+    },
+    {
+      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:mark_draft_ready:success:pipeline-stage:pipeline.sloane.service-renewal-workflow:draft_ready:16",
+      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:mark_draft_ready",
       "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:draft_ready",
       "relation": "success"
     },
     {
-      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:to_draft_ready:failure:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:11",
-      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:to_draft_ready",
+      "id": "edge:pipeline-transition:pipeline.sloane.service-renewal-workflow:mark_draft_ready:failure:pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized:17",
+      "source": "pipeline-transition:pipeline.sloane.service-renewal-workflow:mark_draft_ready",
       "target": "pipeline-stage:pipeline.sloane.service-renewal-workflow:usage_summarized",
       "relation": "failure"
     }
